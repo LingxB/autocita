@@ -1,5 +1,6 @@
 from src.huella.autohuella import AutoHuella
-import ctypes  # An included library with Python install.
+import ctypes
+from src.utils import wait_between
 
 url = 'https://sede.administracionespublicas.gob.es/icpplus/'
 
@@ -19,6 +20,7 @@ def main(url):
         ctypes.windll.user32.MessageBoxW(0, "CITA!!!!!", "CITA!!!!!", 1)
     else:
         ah.cerrar()
+        wait_between(5,10)
         main(url)
 
 

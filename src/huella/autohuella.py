@@ -69,6 +69,7 @@ class AutoHuella(object):
         self.driver.find_element_by_id('btnEnviar').click()
 
     def solicitar(self):
+        wait_between(2,3)
         self.driver.find_element_by_id('btnEnviar').click()
 
     def oficina(self):
