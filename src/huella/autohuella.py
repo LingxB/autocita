@@ -53,8 +53,12 @@ class AutoHuella(object):
         input_name = self.driver.find_element_by_id('txtDesCitado')
         input_name.send_keys(self.data['name'])
 
-        country = [c for c in self.driver.find_elements_by_tag_name('option') if c.text == self.data['nation'].upper()]
-        country[0].click()
+        # country = [c for c in self.driver.find_elements_by_tag_name('option') if c.text == self.data['nation'].upper()]
+        # country[0].click()
+        for c in self.driver.find_elements_by_tag_name('option'):
+            if c.text == self.data['nation'].upper():
+                c.click()
+                break
 
         input_date = self.driver.find_element_by_id('txtFecha')
         input_date.send_keys(self.data['exp_date'])
@@ -66,10 +70,10 @@ class AutoHuella(object):
 
         self.driver.switch_to.default_content()
         self.driver.execute_script("window.scrollTo(0, 1080)")
+        wait_between(2,3)
         self.driver.find_element_by_id('btnEnviar').click()
 
     def solicitar(self):
-        wait_between(2,3)
         self.driver.find_element_by_id('btnEnviar').click()
 
     def oficina(self):
@@ -101,3 +105,4 @@ class AutoHuella(object):
 
     def cerrar(self):
         self.driver.close()
+        self.driver.quit()
